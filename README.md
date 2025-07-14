@@ -21,14 +21,13 @@ module "projects" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
-| <a name="requirement_errorcheck"></a> [errorcheck](#requirement\_errorcheck) | 3.0.3 |
-| <a name="requirement_opentelekomcloud"></a> [opentelekomcloud](#requirement\_opentelekomcloud) | ~> 1.34 |
+| <a name="requirement_opentelekomcloud"></a> [opentelekomcloud](#requirement\_opentelekomcloud) | >= 1.36.24, ~> 1.36 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_opentelekomcloud"></a> [opentelekomcloud](#provider\_opentelekomcloud) | ~> 1.34 |
+| <a name="provider_opentelekomcloud"></a> [opentelekomcloud](#provider\_opentelekomcloud) | >= 1.36.24, ~> 1.36 |
 
 ## Modules
 
@@ -47,6 +46,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_projects"></a> [projects](#input\_projects) | A map of project names to project descriptions. | `map(string)` | n/a | yes |
+| <a name="input_all_projects"></a> [all\_projects](#input\_all\_projects) | Whether created agency roles are applied to all projects including future projects. | `bool` | `true` | no |
 
 ## Outputs
 
