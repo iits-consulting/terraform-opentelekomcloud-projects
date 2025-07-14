@@ -7,10 +7,6 @@ terraform {
       source  = "opentelekomcloud/opentelekomcloud"
       version = "~> 1.34"
     }
-    errorcheck = {
-      source  = "iits-consulting/errorcheck"
-      version = "3.0.3"
-    }
   }
 }
 

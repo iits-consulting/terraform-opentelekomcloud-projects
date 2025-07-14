@@ -10,24 +10,38 @@ resource "opentelekomcloud_identity_agency_v3" "evs_access_kms" {
   description           = "EVSAccessKMS indicates that EVS has been assigned the KMS access rights for obtaining KMS keys to encrypt or decrypt disks."
   delegated_domain_name = "op_svc_evs"
   dynamic "project_role" {
-    for_each = concat(values(opentelekomcloud_identity_project_v3.projects)[*].name, local.builtin_projects)
+    for_each = var.all_projects ? toset([]) : concat(values(opentelekomcloud_identity_project_v3.projects)[*].name, local.builtin_projects)
     content {
       project = project_role.value
       roles   = ["KMS Administrator", ]
     }
   }
+  dynamic "project_role" {
+    for_each = var.all_projects ? ["all_projects"] : toset([])
+    content {
+      all_projects = var.all_projects
+      roles        = ["KMS Administrator", ]
+    }
+  }
 }
 
-#CCE rights
+#CCE agency role
 resource "opentelekomcloud_identity_agency_v3" "cce_admin_trust" {
   name                  = "cce_admin_trust"
   description           = "Create by CCE Team"
   delegated_domain_name = "op_svc_cce"
   dynamic "project_role" {
-    for_each = concat(values(opentelekomcloud_identity_project_v3.projects)[*].name, local.builtin_projects)
+    for_each = var.all_projects ? toset([]) : concat(values(opentelekomcloud_identity_project_v3.projects)[*].name, local.builtin_projects)
     content {
       project = project_role.value
       roles   = ["Tenant Administrator", ]
+    }
+  }
+  dynamic "project_role" {
+    for_each = var.all_projects ? ["all_projects"] : toset([])
+    content {
+      all_projects = var.all_projects
+      roles        = ["Tenant Administrator", ]
     }
   }
 }
